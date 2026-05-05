@@ -1,11 +1,618 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Mahdi Saberi</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Homepage — Your Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1c1c1c;
+      --ink-muted: #555;
+      --ink-faint: #999;
+      --bg: #ffffff;
+      --bg-alt: #f8f8f6;
+      --border: #e2e2de;
+      --accent: #7b2d3e;
+      --link: #2952a3;
+      --link-hover: #1a3570;
+      --max-w: 900px;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    a { color: var(--link); text-decoration: none; }
+    a:hover { color: var(--link-hover); text-decoration: underline; }
+
+    /* NAV */
+    header {
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+
+    .site-title {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .site-title:hover { color: var(--accent); text-decoration: none; }
+
+    nav ul { list-style: none; display: flex; gap: 1.75rem; }
+    nav a { font-size: 0.9rem; color: var(--ink-muted); font-weight: 400; }
+    nav a:hover { color: var(--accent); text-decoration: none; }
+
+    /* PAGE */
+    .page {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* PROFILE */
+    .profile {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      align-items: start;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .profile-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 8px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .profile-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+
+    .profile-photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--ink-faint);
+      font-size: 0.7rem;
+      text-align: center;
+    }
+
+    .profile-name {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      line-height: 1.2;
+    }
+
+    .profile-affil {
+      font-size: 0.9rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .profile-affil img { width: 22px; height: 22px; object-fit: contain; }
+
+    .profile-bio {
+      font-size: 0.93rem;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      line-height: 1.75;
+    }
+
+    .profile-interests {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      margin-bottom: 1rem;
+    }
+
+    .cv-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      margin-bottom: 0.75rem;
+      text-decoration: none;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .cv-link:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+
+    hr.profile-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0.75rem 0;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .social-link {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--link);
+      padding: 0.25rem 0.7rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .social-link:hover { background: var(--bg-alt); text-decoration: none; }
+
+    /* CONTENT GRID */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 255px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    /* SECTION TITLES */
+    h2.section-title {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.3rem;
+      margin-bottom: 1.1rem;
+    }
+
+    /* PUBLICATIONS */
+    .pub-list { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .pub-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pub-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .pub-thumb {
+      width: 110px;
+      height: 75px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: var(--bg-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: var(--ink-faint);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .pub-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
+
+    .pub-title {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+      line-height: 1.4;
+    }
+
+    .pub-badge {
+      display: inline-block;
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      padding: 0.12rem 0.45rem;
+      border-radius: 3px;
+      background: #fff3cd;
+      color: #7a5c00;
+      border: 1px solid #e6d48a;
+      margin-left: 0.35rem;
+      vertical-align: middle;
+      font-family: 'Source Sans 3', sans-serif;
+    }
+
+    .pub-authors { font-size: 0.82rem; color: var(--ink-muted); margin-bottom: 0.2rem; }
+    .pub-authors strong { color: var(--ink); }
+
+    .pub-venue {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+
+    .pub-abstract {
+      font-size: 0.81rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.55rem;
+      line-height: 1.6;
+    }
+
+    .pub-links { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+
+    .pub-links a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--link);
+      border: 1px solid var(--border);
+      padding: 0.12rem 0.5rem;
+      border-radius: 3px;
+    }
+
+    .pub-links a:hover { background: var(--bg-alt); text-decoration: none; }
+
+    .view-all { margin-top: 1rem; font-size: 0.85rem; }
+    .view-all a { color: var(--accent); font-weight: 600; }
+
+    /* SIDEBAR */
+    .sidebar { display: flex; flex-direction: column; gap: 1.75rem; }
+
+    /* Education */
+    .edu-list { display: flex; flex-direction: column; gap: 0.9rem; }
+
+    .edu-item { display: flex; gap: 0.65rem; align-items: flex-start; }
+
+    .edu-logo {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      border-radius: 4px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      overflow: hidden;
+      margin-top: 2px;
+    }
+
+    .edu-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 4px; }
+
+    .edu-school { font-weight: 600; font-size: 0.85rem; line-height: 1.3; }
+    .edu-degree { font-size: 0.79rem; color: var(--ink-muted); line-height: 1.4; }
+    .edu-dates { font-size: 0.74rem; color: var(--ink-faint); }
+
+    /* Awards */
+    .award-list { display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .award-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .award-title { font-size: 0.82rem; color: var(--ink); flex: 1; }
+    .award-year { font-size: 0.74rem; color: var(--ink-faint); font-style: italic; flex-shrink: 0; }
+
+    /* News */
+    .news-year {
+      font-size: 0.73rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 0.75rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .news-item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 0.45rem;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+
+    .news-item:last-child { border-bottom: none; }
+
+    .news-date { font-size: 0.71rem; color: var(--ink-faint); font-style: italic; }
+    .news-text { font-size: 0.81rem; color: var(--ink-muted); line-height: 1.5; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 1.25rem 1.5rem;
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      .profile { grid-template-columns: 1fr; }
+      .content-grid { grid-template-columns: 1fr; }
+      .pub-item { grid-template-columns: 1fr; }
+      .pub-thumb { width: 100%; height: 120px; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Mahdi Saberi</h1>
-  <p>PhD student working on MRI reconstruction and deep learning.</p>
+
+  <header>
+    <div class="header-inner">
+      <a class="site-title" href="#">Your Name</a>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="publications.html">Publications</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <!-- PROFILE -->
+    <div class="profile">
+      <div class="profile-photo">
+        <!--
+          Replace the placeholder below with:
+          <img src="assets/images/portrait.jpg" alt="Your Name" />
+        -->
+        <div class="profile-photo-placeholder">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+            <circle cx="22" cy="17" r="9" fill="#ccc"/>
+            <ellipse cx="22" cy="38" rx="15" ry="9" fill="#ccc"/>
+          </svg>
+          <span>photo here</span>
+        </div>
+      </div>
+
+      <div>
+        <h1 class="profile-name">Your Full Name</h1>
+
+        <div class="profile-affil">
+          <!--
+            Optionally add a university badge:
+            <img src="assets/images/badges/uni_logo.png" alt="University" />
+          -->
+          Research Assistant, University Name
+        </div>
+
+        <p class="profile-bio">
+          Write 2–4 sentences about your position and research here. Mention your advisor, research group, and the broad area you work in. You can also note notable venues where your work has been published and any spotlight or award recognitions.
+        </p>
+
+        <p class="profile-interests">
+          My current research interests include: <em>topic one</em>, <em>topic two</em>, <em>topic three</em>, and <em>topic four</em>.
+        </p>
+
+        <a class="cv-link" href="#" target="_blank">📄 Curriculum Vitae</a>
+
+        <hr class="profile-divider" />
+
+        <div class="social-links">
+          <a class="social-link" href="mailto:you@university.edu">✉ you@university.edu</a>
+          <a class="social-link" href="https://scholar.google.com/citations?user=YOURID" target="_blank">Google Scholar</a>
+          <a class="social-link" href="https://github.com/yourhandle" target="_blank">GitHub</a>
+          <a class="social-link" href="https://linkedin.com/in/yourhandle" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="content-grid">
+
+      <!-- PUBLICATIONS -->
+      <div>
+        <h2 class="section-title">Selected Publications</h2>
+        <div class="pub-list">
+
+          <!-- Pub 1 -->
+          <div class="pub-item">
+            <div class="pub-thumb">
+              <!--
+                Replace with:
+                <img src="assets/images/pub1_thumb.png" alt="Paper thumbnail" />
+              -->
+              <span>Image</span>
+            </div>
+            <div>
+              <div class="pub-title">
+                Your Paper Title One
+                <span class="pub-badge">⭐ Spotlight</span>
+              </div>
+              <div class="pub-authors">
+                <strong>Your Name</strong>, Co-Author One, Co-Author Two, Advisor Name
+              </div>
+              <div class="pub-venue">
+                Conference Full Name (CONF) 2025
+              </div>
+              <p class="pub-abstract">
+                A 2–3 sentence description of the paper. What problem does it address? What method do you propose? What are the key results?
+              </p>
+              <div class="pub-links">
+                <a href="#" target="_blank">[Paper]</a>
+                <a href="#" target="_blank">[Code]</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pub 2 -->
+          <div class="pub-item">
+            <div class="pub-thumb"><span>Image</span></div>
+            <div>
+              <div class="pub-title">Your Paper Title Two</div>
+              <div class="pub-authors">
+                <strong>Your Name</strong>, Co-Author One, Advisor Name
+              </div>
+              <div class="pub-venue">
+                Conference Full Name (CONF) 2024
+              </div>
+              <p class="pub-abstract">
+                Description of the second paper. What is the contribution? What experiments or benchmarks demonstrate the results?
+              </p>
+              <div class="pub-links">
+                <a href="#" target="_blank">[Paper]</a>
+                <a href="#" target="_blank">[Code]</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pub 3 -->
+          <div class="pub-item">
+            <div class="pub-thumb"><span>Image</span></div>
+            <div>
+              <div class="pub-title">Your Paper Title Three</div>
+              <div class="pub-authors">
+                Co-Author One, <strong>Your Name</strong>, Advisor Name
+              </div>
+              <div class="pub-venue">
+                Conference Full Name (CONF) 2024
+              </div>
+              <p class="pub-abstract">
+                Description of the third paper.
+              </p>
+              <div class="pub-links">
+                <a href="#" target="_blank">[Paper]</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="view-all"><a href="publications.html">All publications →</a></p>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+
+        <!-- Education -->
+        <div>
+          <h2 class="section-title">Education</h2>
+          <div class="edu-list">
+
+            <div class="edu-item">
+              <div class="edu-logo">
+                <!--
+                  <img src="assets/images/badges/uni1_logo.png" alt="University 1" />
+                -->
+                🎓
+              </div>
+              <div>
+                <div class="edu-school">University Name</div>
+                <div class="edu-degree">
+                  Ph.D., Department Name<br>
+                  <strong>Major:</strong> Field, <strong>Minor:</strong> Field
+                </div>
+                <div class="edu-dates">Aug. 2022 – present</div>
+              </div>
+            </div>
+
+            <div class="edu-item">
+              <div class="edu-logo">🎓</div>
+              <div>
+                <div class="edu-school">Undergraduate University</div>
+                <div class="edu-degree">B.S., Major Name</div>
+                <div class="edu-dates">Sep. 2017 – Jun. 2022</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Honors & Awards -->
+        <div>
+          <h2 class="section-title">Honors &amp; Awards</h2>
+          <div class="award-list">
+            <div class="award-item">
+              <span class="award-title">Best Paper Award, Conference Name</span>
+              <span class="award-year">2025</span>
+            </div>
+            <div class="award-item">
+              <span class="award-title">Spotlight at Major Venue</span>
+              <span class="award-year">2025</span>
+            </div>
+            <div class="award-item">
+              <span class="award-title">Department Fellowship</span>
+              <span class="award-year">2022</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- News -->
+        <div>
+          <h2 class="section-title">News</h2>
+          <div class="news-list">
+
+            <div class="news-year">2026</div>
+            <div class="news-item">
+              <span class="news-date">Feb 21</span>
+              <span class="news-text">Paper accepted at <a href="#">Conference 2026</a></span>
+            </div>
+
+            <div class="news-year">2025</div>
+            <div class="news-item">
+              <span class="news-date">Sep 18</span>
+              <span class="news-text">2 papers accepted at <a href="#">Major Venue 2025</a>, one as ⭐ spotlight</span>
+            </div>
+            <div class="news-item">
+              <span class="news-date">Jul 30</span>
+              <span class="news-text">Paper accepted at <a href="#">Another Venue 2025</a></span>
+            </div>
+            <div class="news-item">
+              <span class="news-date">Jan 15</span>
+              <span class="news-text">Started internship at Organization Name</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /sidebar -->
+    </div><!-- /content-grid -->
+  </main>
+
+  <footer>
+    <p>Last updated: May 2026</p>
+  </footer>
+
 </body>
-</html>
 </html>
