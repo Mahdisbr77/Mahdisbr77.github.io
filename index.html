@@ -9,6 +9,11 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    .profile-text {
+      min-width: 0;
+      overflow-wrap: break-word;
+    }
+    
     :root {
       --ink: #1c1c1c;
       --ink-muted: #555;
@@ -395,7 +400,7 @@
 
     <!-- PROFILE -->
     <div class="profile">
-      <div>
+      <div class="profile-text">
         <h1 class="profile-name">Mahdi Saberi</h1>
 
         <div class="profile-affil">
